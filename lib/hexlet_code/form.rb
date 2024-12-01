@@ -35,7 +35,7 @@ module HexletCode
                    end
       end
 
-      def submit(text)
+      def submit(text = "Save")
         @fields << Submit.build(text)
       end
 

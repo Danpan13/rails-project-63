@@ -4,9 +4,7 @@ require_relative 'hexlet_code/version'
 
 # HexletCode module provides methods for generating HTML tags and forms.
 module HexletCode
-  autoload :Tag, 'hexlet_code/tag'
   autoload :Form, 'hexlet_code/form'
-  autoload :Input, 'hexlet_code/input'
   class Error < StandardError; end
 
   def self.form_for(entity, **form_attributes, &block)
