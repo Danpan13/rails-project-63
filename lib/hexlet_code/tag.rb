@@ -7,7 +7,7 @@ module HexletCode
       if block_given?
         "<#{name}#{attributes_string(attributes)}>#{yield}</#{name}>"
       else
-        "<#{name}#{attributes_string(attributes)}></#{name}>"
+        "<#{name}#{attributes_string(attributes)} />"
       end
     end
 
