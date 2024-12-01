@@ -4,6 +4,7 @@
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
   autoload :Input, 'hexlet_code/input'
+  autoload :Submit, 'hexlet_code/submit'
   # Form class represents an HTML form and provides methods to build it.
   class Form
     def self.build(entity, **attributes)
@@ -30,6 +31,10 @@ module HexletCode
                    else
                      Input.build(name: name, **attributes)
                    end
+
+      end
+      def submit(value)
+        @fields << Submit.build(value)
       end
 
       def to_s
