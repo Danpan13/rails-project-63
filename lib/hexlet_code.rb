@@ -6,12 +6,13 @@ require_relative 'hexlet_code/version'
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
   autoload :Form, 'hexlet_code/form'
+  autoload :Input, 'hexlet_code/input'
   class Error < StandardError; end
 
   def self.form_for(entity, **form_attributes)
     body = "\n"
     entity.to_h.each do |key, val|
-      body += Tag.build('input', name: key, value: val)
+      body += Input.build(name: key, value: val)
       body += "\n"
     end
 
