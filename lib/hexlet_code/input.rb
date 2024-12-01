@@ -5,7 +5,9 @@ module HexletCode
   class Input
     def self.build(name:, value: '', **attributes)
       default_attributes = { name: name, value: value, type: 'text' }
-      Tag.build('input', **default_attributes.merge(attributes))
+      label = Tag.build('label', for: name) { name.capitalize }
+      input = Tag.build('input', **default_attributes.merge(attributes))
+      label + input
     end
   end
 end
