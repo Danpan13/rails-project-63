@@ -5,7 +5,9 @@ module HexletCode
     def self.build(entity, **attributes, &block)
       default_attributes = { action: attributes.delete(:url) || '#', method: 'post' }
       Tag.build('form', **default_attributes.merge(attributes)) do
-        yield FormBuilder.new(entity) if block_given?
+        form_builder = FormBuilder.new(entity)
+        yield form_builder
+        form_builder.to_s # Convert fields to a string
       end
     end
 

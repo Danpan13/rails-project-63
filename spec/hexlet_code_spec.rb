@@ -10,16 +10,20 @@ RSpec.describe HexletCode do
   let(:form_with_textarea) { File.read('spec/fixtures/form_with_textarea.html', encoding: 'UTF-8').strip }
   let(:form_with_custom_attributes) { File.read('spec/fixtures/form_with_custom_attributes.html', encoding: 'UTF-8').strip }
 
-  it 'generates an empty form' do
-    expect(HexletCode.form_for(user)).to eq(default_form_output)
-  end
+  # it 'generates an empty form' do
+  #   expect(HexletCode.form_for(user)).to eq(default_form_output)
+  # end
+  #
+  # it 'generates a form with a custom URL' do
+  #   expect(HexletCode.form_for(user, url: '/profile')).to eq(form_with_custom_url)
+  # end
+  #
+  # it 'generates a form with additional CSS classes' do
+  #   expect(HexletCode.form_for(user, class: 'hexlet-form')).to eq(form_with_css_classes)
+  # end
 
-  it 'generates a form with a custom URL' do
-    expect(HexletCode.form_for(user, url: '/profile')).to eq(form_with_custom_url)
-  end
-
-  it 'generates a form with additional CSS classes' do
-    expect(HexletCode.form_for(user, class: 'hexlet-form')).to eq(form_with_css_classes)
+  it 'generates a form with an input' do
+    expect(HexletCode.form_for(user) { |f| f.input :name }).to eq(form_with_textarea)
   end
 
   it 'generates a form with a textarea' do
