@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HexletCode
   class Input
     def self.build(name:, value: '', **attributes)

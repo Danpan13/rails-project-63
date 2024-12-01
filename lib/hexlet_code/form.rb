@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
   autoload :Input, 'hexlet_code/input'
   class Form
-    def self.build(entity, **attributes, &block)
+    def self.build(entity, **attributes)
       default_attributes = { action: attributes.delete(:url) || '#', method: 'post' }
       Tag.build('form', **default_attributes.merge(attributes)) do
         form_builder = FormBuilder.new(entity)
@@ -20,11 +22,11 @@ module HexletCode
       def input(name, as: :input, **attributes)
         raise NoMethodError, "undefined method `#{name}` for #{@entity}" unless @entity.respond_to?(name)
 
-        if as == :text
-          @fields << Tag.build('textarea', name: name, cols: 20, rows: 40, **attributes)
-        else
-          @fields << Input.build(name: name, **attributes)
-        end
+        @fields << if as == :text
+                     Tag.build('textarea', name: name, cols: 20, rows: 40, **attributes)
+                   else
+                     Input.build(name: name, **attributes)
+                   end
       end
 
       def to_s

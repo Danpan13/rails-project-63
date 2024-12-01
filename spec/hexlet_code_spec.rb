@@ -3,13 +3,15 @@
 require 'hexlet_code'
 
 RSpec.describe HexletCode do
-  let(:user) { Struct.new(:name, :job, :gender, keyword_init: true).new(name: 'rob', gender: "m") }
+  let(:user) { Struct.new(:name, :job, :gender, keyword_init: true).new(name: 'rob', gender: 'm') }
   let(:default_empty_form) { File.read('spec/fixtures/default_empty_form.html', encoding: 'UTF-8').strip }
   let(:form_with_custom_url) { File.read('spec/fixtures/form_with_custom_url.html', encoding: 'UTF-8').strip }
   let(:form_with_css_classes) { File.read('spec/fixtures/form_with_css_classes.html', encoding: 'UTF-8').strip }
   let(:form_with_textarea) { File.read('spec/fixtures/form_with_textarea.html', encoding: 'UTF-8').strip }
   let(:form_with_input) { File.read('spec/fixtures/form_with_input.html', encoding: 'UTF-8').strip }
-  let(:form_with_custom_attributes) { File.read('spec/fixtures/form_with_custom_attributes.html', encoding: 'UTF-8').strip }
+  let(:form_with_custom_attributes) do
+    File.read('spec/fixtures/form_with_custom_attributes.html', encoding: 'UTF-8').strip
+  end
 
   it 'generates an empty form' do
     expect(HexletCode.form_for(user)).to eq(default_empty_form)
@@ -32,6 +34,8 @@ RSpec.describe HexletCode do
   end
 
   it 'generates a form with custom attributes' do
-    expect(HexletCode.form_for(user, url: '#') { |f| f.input :job, as: :text, rows: 50, cols: 50 }).to eq(form_with_custom_attributes)
+    expect(HexletCode.form_for(user, url: '#') do |f|
+      f.input :job, as: :text, rows: 50, cols: 50
+    end).to eq(form_with_custom_attributes)
   end
 end
