@@ -25,6 +25,7 @@ module HexletCode
 
       def input(name, as: :input, **attributes)
         raise NoMethodError, "undefined method `#{name}` for #{@entity}" unless @entity.respond_to?(name)
+
         hash = @entity.to_h
         value = hash[name]
         @fields << if as == :text
@@ -32,8 +33,8 @@ module HexletCode
                    else
                      Input.build(name: name, value: value, **attributes)
                    end
-
       end
+
       def submit(text)
         @fields << Submit.build(text)
       end
