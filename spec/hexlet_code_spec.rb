@@ -15,3 +15,4 @@ RSpec.describe HexletCode do
     expect(HexletCode.form_for(user, url: '/profile', class: 'hexlet-form')).to eq('<form action="/profile" method="post" class="hexlet-form"></form>')
   end
 end
+

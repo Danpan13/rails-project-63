@@ -9,7 +9,7 @@ module HexletCode
 
   def self.form_for(entity, **attributes)
     action = attributes.delete(:url) || "#"
-    attributes_string = attributes.map { |key, value| " #{key}=\"#{value}\"" }.join
-    "<form action=\"#{action}\" method=\"post\"#{attributes_string}></form>"
+    extended_attributes = { action: action, method: 'post' }.merge(attributes)
+    Tag.build('form', **extended_attributes)
   end
 end
