@@ -4,6 +4,7 @@
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
   autoload :Input, 'hexlet_code/input'
+  autoload :Textarea, 'hexlet_code/textarea'
   autoload :Submit, 'hexlet_code/submit'
   # Form class represents an HTML form and provides methods to build it.
   class Form
@@ -29,7 +30,7 @@ module HexletCode
         hash = @entity.to_h
         value = hash[name]
         @fields << if as == :text
-                     Tag.build('textarea', name: name, value: value, cols: 20, rows: 40, **attributes)
+                     Textarea.build(name: name, value: value, **attributes)
                    else
                      Input.build(name: name, value: value, **attributes)
                    end
