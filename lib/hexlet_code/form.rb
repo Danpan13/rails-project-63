@@ -25,16 +25,17 @@ module HexletCode
 
       def input(name, as: :input, **attributes)
         raise NoMethodError, "undefined method `#{name}` for #{@entity}" unless @entity.respond_to?(name)
-
+        hash = @entity.to_h
+        value = hash[name]
         @fields << if as == :text
-                     Tag.build('textarea', name: name, cols: 20, rows: 40, **attributes)
+                     Tag.build('textarea', name: name, value: value, cols: 20, rows: 40, **attributes)
                    else
-                     Input.build(name: name, **attributes)
+                     Input.build(name: name, value: value, **attributes)
                    end
 
       end
-      def submit(value)
-        @fields << Submit.build(value)
+      def submit(text)
+        @fields << Submit.build(text)
       end
 
       def to_s

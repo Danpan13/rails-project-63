@@ -13,6 +13,9 @@ RSpec.describe HexletCode do
   let(:form_with_custom_attributes) do
     File.read('spec/fixtures/form_with_custom_attributes.html', encoding: 'UTF-8').strip
   end
+  let(:form_with_labels_and_submit) do
+    File.read('spec/fixtures/form_with_labels_and_submit.html', encoding: 'UTF-8').strip
+  end
 
   describe 'Empty and Custom Forms' do
     it 'generates an empty form' do
@@ -46,23 +49,12 @@ RSpec.describe HexletCode do
 
   describe 'Form with Labels and Submit' do
     it 'generates a form with labels and a submit button' do
-      expected_output = <<~HTML.strip
-        <form action="#" method="post">
-          <label for="name">Name</label>
-          <input name="name" type="text" value="rob" />
-          <label for="job">Job</label>
-          <input name="job" type="text" value="hexlet" />
-          <input type="submit" value="Wow" />
-        </form>
-      HTML
-
       actual_output = HexletCode.form_for(user, url: '#') do |f|
         f.input :name
         f.input :job
         f.submit 'Wow'
       end
-
-      expect(actual_output).to eq(expected_output)
+      expect(actual_output).to eq(form_with_labels_and_submit)
     end
   end
 end
