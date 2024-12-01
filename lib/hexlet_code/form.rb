@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+# HexletCode module provides functionality for building HTML forms.
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
   autoload :Input, 'hexlet_code/input'
+  # Form class represents an HTML form and provides methods to build it.
   class Form
     def self.build(entity, **attributes)
       default_attributes = { action: attributes.delete(:url) || '#', method: 'post' }
@@ -13,6 +15,7 @@ module HexletCode
       end
     end
 
+    # FormBuilder class assists in building form fields.
     class FormBuilder
       def initialize(entity)
         @entity = entity
