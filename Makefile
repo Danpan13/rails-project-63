@@ -1,7 +1,7 @@
 install:
 	bundle install
 lint:
-	rubocop
+	rubocop -A
 
 test:
 	bundle exec rspec

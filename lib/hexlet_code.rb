@@ -7,9 +7,8 @@ module HexletCode
   autoload :Tag, 'hexlet_code/tag'
   class Error < StandardError; end
 
-  def self.form_for(entity, **attributes)
-    action = attributes.delete(:url) || "#"
-    extended_attributes = { action: action, method: 'post' }.merge(attributes)
+  def self.form_for(_entity, **attributes)
+    extended_attributes = { action: attributes.delete(:url) || '#', method: 'post' }.merge(attributes)
     Tag.build('form', **extended_attributes)
   end
 end
