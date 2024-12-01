@@ -4,7 +4,7 @@ require 'hexlet_code'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe HexletCode do
-  let(:user) { Struct.new(:name, :job, :gender, keyword_init: true).new(name: 'rob', gender: 'm') }
+  let(:user) { Struct.new(:name, :job, :gender, keyword_init: true).new(name: 'rob', gender: 'm', job: 'hexlet') }
   let(:default_empty_form) { File.read('spec/fixtures/default_empty_form.html', encoding: 'UTF-8').strip }
   let(:form_with_custom_url) { File.read('spec/fixtures/form_with_custom_url.html', encoding: 'UTF-8').strip }
   let(:form_with_css_classes) { File.read('spec/fixtures/form_with_css_classes.html', encoding: 'UTF-8').strip }
@@ -41,6 +41,28 @@ RSpec.describe HexletCode do
       expect(HexletCode.form_for(user, url: '#') do |f|
         f.input :job, as: :text, rows: 50, cols: 50
       end).to eq(form_with_custom_attributes)
+    end
+  end
+
+  describe 'Form with Labels and Submit' do
+    it 'generates a form with labels and a submit button' do
+      expected_output = <<~HTML.strip
+        <form action="#" method="post">
+          <label for="name">Name</label>
+          <input name="name" type="text" value="rob" />
+          <label for="job">Job</label>
+          <input name="job" type="text" value="hexlet" />
+          <input type="submit" value="Wow" />
+        </form>
+      HTML
+
+      actual_output = HexletCode.form_for(user, url: '#') do |f|
+        f.input :name
+        f.input :job
+        f.submit 'Wow'
+      end
+
+      expect(actual_output).to eq(expected_output)
     end
   end
 end
