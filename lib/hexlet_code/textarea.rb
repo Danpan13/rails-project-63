@@ -6,7 +6,7 @@ module HexletCode
     def self.build(name:, value: '', **attributes)
       default_attributes = { name: name, cols: 20, rows: 40 }
       label = Tag.build('label', for: name) { name.capitalize }
-      input = Tag.build('textarea', **default_attributes.merge(attributes)) { value }
+      input = Tag.build('textarea', **default_attributes, **attributes) { value }
       label + input
     end
   end
