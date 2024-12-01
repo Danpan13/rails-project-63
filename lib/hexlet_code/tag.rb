@@ -7,12 +7,14 @@ module HexletCode
       if block_given?
         "<#{name}#{attributes_string(attributes)}>#{yield}</#{name}>"
       else
-        "<#{name}#{attributes_string(attributes)} />"
+        "<#{name}#{attributes_string(attributes)}></#{name}>"
       end
     end
 
+    private
+
     def self.attributes_string(attributes)
-      attributes.map { |key, value| " #{key}='#{value}'" }.join
+      attributes.map { |key, value| " #{key}=\"#{value}\"" }.join
     end
   end
 end

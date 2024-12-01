@@ -10,12 +10,11 @@ RSpec.describe HexletCode do
   end
 
   it 'generates a form with additional attributes' do
-    expect(HexletCode.form_for(user,
-                               class: 'hexlet-form')).to eq('<form action="#" method="post" class="hexlet-form"></form>')
+    expect(HexletCode.form_for(user, class: 'hexlet-form')).to eq('<form action="#" method="post" class="hexlet-form"></form>')
   end
 
   it 'uses url attribute if provided' do
-    expect(HexletCode.form_for(user, url: '/profile',
-                                     class: 'hexlet-form')).to eq('<form action="/profile" method="post" class="hexlet-form"></form>')
+    expect(HexletCode.form_for(user, url: '/profile', class: 'hexlet-form')).to eq('<form action="/profile" method="post" class="hexlet-form"></form>')
   end
 end
+
