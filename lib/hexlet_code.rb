@@ -8,7 +8,13 @@ module HexletCode
   autoload :Form, 'hexlet_code/form'
   class Error < StandardError; end
 
-  def self.form_for(_entity, **attributes)
-    Form.build(**attributes)
+  def self.form_for(entity, **form_attributes)
+    body = "\n"
+    entity.to_h.each do |key, val|
+      body += Tag.build('input', name: key, value: val)
+      body += "\n"
+    end
+
+    Form.build(**form_attributes) { body }
   end
 end
