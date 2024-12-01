@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
+  # HexletCode::Tag module provides methods for building HTML tags.
   module Tag
     def self.build(name, **attributes)
       if block_given?
