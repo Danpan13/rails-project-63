@@ -2,6 +2,7 @@
 
 require 'hexlet_code'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe HexletCode do
   let(:user) { Struct.new(:name, :job, :gender, keyword_init: true).new(name: 'rob', gender: 'm') }
   let(:default_empty_form) { File.read('spec/fixtures/default_empty_form.html', encoding: 'UTF-8').strip }
@@ -43,3 +44,4 @@ RSpec.describe HexletCode do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
