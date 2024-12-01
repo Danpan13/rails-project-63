@@ -20,11 +20,10 @@ module HexletCode
       def input(name, as: :input, **attributes)
         raise NoMethodError, "undefined method `#{name}` for #{@entity}" unless @entity.respond_to?(name)
 
-        field_value = @entity.public_send(name)
         if as == :text
-          @fields << Tag.build('textarea', name: name, cols: 20, rows: 40, **attributes) { field_value }
+          @fields << Tag.build('textarea', name: name, cols: 20, rows: 40, **attributes)
         else
-          @fields << Input.build(name: name, value: field_value, **attributes)
+          @fields << Input.build(name: name, **attributes)
         end
       end
 

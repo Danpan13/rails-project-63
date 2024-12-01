@@ -6,9 +6,9 @@ module HexletCode
     def self.build(name, **attributes)
 
       if block_given?
-        "\n<#{name}#{attributes_string(attributes)}>#{yield}</#{name}>"
+        "<#{name}#{attributes_string(attributes)}>#{yield}</#{name}>"
       else
-        "\n<#{name}#{attributes_string(attributes)} />"
+        "<#{name}#{attributes_string(attributes)} />"
       end
     end
 

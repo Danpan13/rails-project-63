@@ -8,6 +8,7 @@ RSpec.describe HexletCode do
   let(:form_with_custom_url) { File.read('spec/fixtures/form_with_custom_url.html', encoding: 'UTF-8').strip }
   let(:form_with_css_classes) { File.read('spec/fixtures/form_with_css_classes.html', encoding: 'UTF-8').strip }
   let(:form_with_textarea) { File.read('spec/fixtures/form_with_textarea.html', encoding: 'UTF-8').strip }
+  let(:form_with_input) { File.read('spec/fixtures/form_with_input.html', encoding: 'UTF-8').strip }
   let(:form_with_custom_attributes) { File.read('spec/fixtures/form_with_custom_attributes.html', encoding: 'UTF-8').strip }
 
   it 'generates an empty form' do
@@ -23,7 +24,7 @@ RSpec.describe HexletCode do
   # end
 
   it 'generates a form with an input' do
-    expect(HexletCode.form_for(user) { |f| f.input :name }).to eq(form_with_textarea)
+    expect(HexletCode.form_for(user) { |f| f.input :name }).to eq(form_with_input)
   end
 
   it 'generates a form with a textarea' do
