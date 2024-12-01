@@ -9,13 +9,9 @@ module HexletCode
   autoload :Input, 'hexlet_code/input'
   class Error < StandardError; end
 
-  def self.form_for(entity, **form_attributes)
-    body = "\n"
-    entity.to_h.each do |key, val|
-      body += Input.build(name: key, value: val)
-      body += "\n"
+  def self.form_for(entity, **form_attributes, &block)
+    Form.build(entity, **form_attributes) do |form_builder|
+      block.call(form_builder) if block_given?
     end
-
-    Form.build(**form_attributes) { body }
   end
 end
